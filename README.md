@@ -43,7 +43,7 @@ On the Homework page, input assignments and track completion status for each tas
 On the Goals page, create and monitor personal or family goals that are in progress.
 
 ### Data Sync (Firebase)
-All events, chores, homework, and goals are stored using Firebase. This allows updates to sync across devices so family members can access the most up-to-date information.
+All events, chores, homework, and goals are stored using Firebase. This allows updates to sync across devices so family members can access the most up to date information.
 
 ---
 
