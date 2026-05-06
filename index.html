@@ -113,6 +113,53 @@
     .hero-btn.primary { background: white; color: #635bff; }
     .hero-btn.secondary { background: rgba(255,255,255,0.18); color: white; }
 
+    .help-card {
+      background: #fff7ed;
+      border-left: 6px solid #fb923c;
+      padding: 16px;
+      border-radius: 18px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+    }
+
+    .help-card h2 {
+      margin: 0 0 8px;
+      font-size: 1.08rem;
+      color: #1f2937;
+    }
+
+    .help-card p {
+      margin: 0;
+      color: #555;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #111827;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: bold;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, bottom 0.3s ease;
+      z-index: 999;
+      font-size: 0.9rem;
+      text-align: center;
+      max-width: 90%;
+    }
+
+    .toast.show {
+      opacity: 1;
+      bottom: 34px;
+    }
+
     .card {
       background: white;
       border-radius: 22px;
@@ -354,6 +401,16 @@
       </div>
     </div>
 
+    <section class="help-card">
+      <h2>How to Use FamilyHub</h2>
+      <p>
+        Add events, chores, homework, and goals using the sections below.
+        Updates are saved with Firebase so your family can stay on the same page across devices.
+      </p>
+    </section>
+
+    <div id="toast" class="toast">Saved successfully!</div>
+
     <div class="card">
       <span class="section-label">Today at a glance</span>
       <h2>Live Counts</h2>
@@ -540,6 +597,16 @@
     let chores = [];
     let homework = [];
 
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2200);
+    }
+
     function getInitial(name) {
       return (name || "?").charAt(0).toUpperCase();
     }
@@ -648,7 +715,7 @@
       const date = document.getElementById("eventDate").value;
 
       if (!text || !date) {
-        alert("Please enter an event name and date.");
+        showToast("Please enter an event name and date.");
         return;
       }
 
@@ -663,11 +730,17 @@
 
       document.getElementById("eventText").value = "";
       document.getElementById("eventDate").value = "";
+
+      showToast("Event added!");
     };
 
     window.addChore = function () {
       const text = document.getElementById("choreText").value.trim();
-      if (!text) return;
+
+      if (!text) {
+        showToast("Please enter a chore.");
+        return;
+      }
 
       push(refs.chores, {
         text,
@@ -678,11 +751,17 @@
       });
 
       document.getElementById("choreText").value = "";
+
+      showToast("Chore added!");
     };
 
     window.addHomework = function () {
       const text = document.getElementById("homeworkText").value.trim();
-      if (!text) return;
+
+      if (!text) {
+        showToast("Please enter a homework item.");
+        return;
+      }
 
       push(refs.homework, {
         text,
@@ -694,23 +773,33 @@
       });
 
       document.getElementById("homeworkText").value = "";
+
+      showToast("Homework added!");
     };
 
     window.toggleItem = function (type, id, completed) {
       update(ref(db, `familyhub/${type}/${id}`), {
         completed: !completed
       });
+
+      showToast(completed ? "Marked incomplete." : "Marked complete!");
     };
 
     window.deleteItem = function (type, id) {
       remove(ref(db, `familyhub/${type}/${id}`));
+      showToast("Item deleted.");
     };
 
     window.openChatGPT = function () {
       const question = document.getElementById("chatQuestion").value.trim();
-      if (!question) return;
+
+      if (!question) {
+        showToast("Please enter a question first.");
+        return;
+      }
 
       document.getElementById("chatPreview").textContent = question;
+      showToast("Opening ChatGPT...");
       window.open("https://chatgpt.com/", "_blank");
     };
 
