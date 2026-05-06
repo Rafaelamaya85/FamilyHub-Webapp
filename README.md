@@ -22,13 +22,17 @@ As someone balancing work, school, and family life, I have experienced how diffi
 
 **ChatGPT** - I used ChatGPT to assist with troubleshooting code and refining written grammar for clarity and structure.
 
-Usage Instructions
+**Usage Instructions**
+Navigate the App
+Use the navigation links to move between the Home, Calendar, Homework, and Goals pages.
+Add Events
+On the Home or Calendar page, use the “Add Event” button to create a new family event. Enter details such as title, date, time, and assigned family member.
+Add Chores
+On the Home page, use the “Add Chore” section to assign tasks to family members. You can mark chores as complete once finished.
+Add Homework
+On the Homework page, input assignments and track completion status for each task.
+Track Goals
+On the Goals page, create and monitor personal or family goals that are in progress.
+Data Sync (Firebase)
+All events, chores, homework, and goals are stored using Firebase. This allows updates to sync across devices, so multiple family members can access the same up-to-date information.
 
-Users can interact with FamilyHub through the main navigation and input sections across each page:
-
-Add Events: Use the “Add Event” section on the Home or Calendar page to create and assign events to family members. Events will appear in both the homepage view and calendar.
-Add Chores: On the Home page, users can assign chores and mark them as complete once finished.
-Add Homework: On the Homework page, users can input assignments and track completion status.
-Track Goals: On the Goals page, users can create and monitor goals in progress.
-
-All data is stored using Firebase, which allows updates to sync across devices so family members can access the most current information.
