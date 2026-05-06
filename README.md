@@ -21,3 +21,14 @@ As someone balancing work, school, and family life, I have experienced how diffi
 **GitHub Pages** - I used GitHub Pages to deploy the application and make it accessible through a live URL.
 
 **ChatGPT** - I used ChatGPT to assist with troubleshooting code and refining written grammar for clarity and structure.
+
+Usage Instructions
+
+Users can interact with FamilyHub through the main navigation and input sections across each page:
+
+Add Events: Use the “Add Event” section on the Home or Calendar page to create and assign events to family members. Events will appear in both the homepage view and calendar.
+Add Chores: On the Home page, users can assign chores and mark them as complete once finished.
+Add Homework: On the Homework page, users can input assignments and track completion status.
+Track Goals: On the Goals page, users can create and monitor goals in progress.
+
+All data is stored using Firebase, which allows updates to sync across devices so family members can access the most current information.
